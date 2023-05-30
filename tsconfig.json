@@ -2,5 +2,25 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true
-  }
+  },
+  "plugins": [
+    {
+      "name": "typescript-styled-plugin",
+      "lint": {
+        "validProperties": [
+          "shadow-color",
+          "shadow-opacity",
+          "shadow-offset",
+          "shadow-radius",
+          "padding-horizontal",
+          "padding-vertical",
+          "margin-vertical",
+          "margin-horizontal",
+          "tint-color",
+          "aspect-ratio",
+          "elevation"
+        ]
+      }
+    }
+  ]
 }

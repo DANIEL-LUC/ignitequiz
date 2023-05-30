@@ -9,10 +9,14 @@ import { QuizCard } from '../../components/QuizCard';
 
 import { styles } from './styles';
 import { QUIZZES } from '../../data/quizzes';
+import Animated, { FlipInYLeft, RotateInDownLeft, RotateOutDownLeft, ZoomIn, ZoomOut } from 'react-native-reanimated';
+import { Button } from '../../components/Button';
 
 export function Home() {
   const [quizzes, setQuizzes] = useState(QUIZZES);
   const [levels, setLevels] = useState([1, 2, 3]);
+
+  const [ show,setShow] = useState(true)
 
   const { navigate } = useNavigation();
 
@@ -40,6 +44,14 @@ export function Home() {
         subtitle="Treine seus conhecimento"
         onPress={() => navigate('history')}
       />
+{/* 
+      { show && (<Animated.View 
+      entering={RotateInDownLeft.duration(700)}
+      exiting={ZoomOut.duration(700)}
+      style={{width: 50,marginBottom:50, height: 50, backgroundColor: 'red'}}/>
+    )}
+
+      <Button title='Teste' onPress={()=> setShow(preState => !preState)}/> */}
 
       <View style={styles.levels}>
         <Level title="Fácil" type="EASY" onPress={() => handleLevelFilter(1)} isChecked={levels.includes(1)} />
@@ -50,8 +62,9 @@ export function Home() {
       <FlatList
         data={quizzes}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <QuizCard
+          index={index}
             data={item}
             onPress={() => navigate('quiz', { id: item.id })}
           />
