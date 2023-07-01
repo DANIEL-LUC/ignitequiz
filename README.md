@@ -8,7 +8,7 @@
 </p>
 
 
-## 💻 Projeto
+## 💻 Projeto APP
 
 ignitequiz_template
 
